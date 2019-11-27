@@ -1,5 +1,14 @@
+# node files
 node_modules/
+
+# python files
+*__pycache__/
+
+# repo data files / results
 build/
 tmp/
+
+# ide files
 .vscode/
 *.code-workspace
+
