@@ -10,10 +10,8 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Finds rows in trees inventory with species id missing from species_attributes.csv.')
     parser.add_argument('-u', '--trees-inventory-url',
         default='https://data.smgov.net/resource/w8ue-6cnd.csv?$limit=50000',
-        required=True,
         help='trees inventory url')
     parser.add_argument('-s', '--species-attributes-csv',
-        required=True,
         default='data/species_attributes.csv',
         help='file path for species_attributes.csv')
 
@@ -57,7 +55,7 @@ if __name__ == '__main__':
 
     # read in the data
     species_df = pd.read_csv(args.species_attributes_csv)
-    trees_inventory_df = pd.read_csv(args.trees_inventory_ur)
+    trees_inventory_df = pd.read_csv(args.trees_inventory_url)
 
     # verify that both dataframes have the join column
     if species_id_col_name not in species_df.columns:
