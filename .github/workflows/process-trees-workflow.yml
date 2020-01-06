@@ -15,9 +15,9 @@ jobs:
           node-version: '9.11.1'
       - run: npm install
       - name: Update Conda environment with "environment.yml"
-          uses: matthewrmshin/conda-action@v1
-          with:
-            args: conda env update -f ./environment.yml
+        uses: matthewrmshin/conda-action@v1
+        with:
+          args: conda env update -f ./environment.yml
       - run: ./scripts/python-env.sh
         shell: bash
       - run: make release
