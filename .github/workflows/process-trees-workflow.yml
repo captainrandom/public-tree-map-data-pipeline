@@ -1,0 +1,29 @@
+name: Update Trees
+# This workflow is triggered on pushes to the repository.
+on:
+  push:
+    branches:
+      - github-actions
+
+jobs:
+  build:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '9.11.1'
+      - run: npm install
+      - name: Update Conda environment with "environment.yml"
+          uses: matthewrmshin/conda-action@v1
+          with:
+            args: conda env update -f ./environment.yml
+      - run: ./scripts/python-env.sh
+        shell: bash
+      - run: make release
+        shell: bash
+      - name: Setup Google Cloud SDK
+        uses: mathrix-education/setup-gcloud@master
+#        with:
+#          service-account-key: ${{ secrets.GCLOUD_AUTH }} # base64-encoded service account JSON key
+#          confgure-docker: true
